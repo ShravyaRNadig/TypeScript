@@ -3,6 +3,12 @@
 //         console.log(message)
 //     }
 // }
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 // const helloWorld = new HelloWorld('Welcome to typescript');
 // console.log(helloWorld)
 // genatic function
@@ -99,38 +105,55 @@
 // console.log(s);
 // console.log(s['maximized']);
 // genatic classes and interface
-var GenericNumber = /** @class */ (function () {
-    function GenericNumber() {
+// class GenericNumber<T> {
+//     zeroValue: T;
+//     add: (x: T, y: T) => T;
+// }
+// let myGenericNumber = new GenericNumber<number>();
+// myGenericNumber.zeroValue = 0;
+// myGenericNumber.add = function (x, y) {
+//     return x + y;
+// };
+// interface Collection<T> {
+//     add(t: T): void;
+//     remove(t: T): void;
+//     asArray(): T[];
+// }
+// class List<T> implements Collection<T> {
+//     private data:T[]=[];
+//     add(t:T):void{
+// this.data.push(t);
+//     }
+//     remove(t: T): void {
+//         let index =  this.data.indexOf(t);
+//         if(index >-1){
+//             this.data.slice(index,1);
+//         }
+//     }
+//     asArray(): T[] {
+//         return this.data
+//     }
+// }
+// let numbers: Collection<number> = new List();
+// numbers.add(11);
+// numbers.add(12);
+// numbers.add(13);
+// numbers.remove(12);
+// let numArray = numbers.asArray();
+// console.log(numArray);
+// Method decorator
+function log(target, key, descriptor) {
+    console.log("".concat(key, " was called"));
+}
+var Calculator = /** @class */ (function () {
+    function Calculator() {
     }
-    return GenericNumber;
+    // using the @log decorator
+    Calculator.prototype.square = function (n) {
+        return n * n;
+    };
+    __decorate([
+        log
+    ], Calculator.prototype, "square", null);
+    return Calculator;
 }());
-var myGenericNumber = new GenericNumber();
-myGenericNumber.zeroValue = 0;
-myGenericNumber.add = function (x, y) {
-    return x + y;
-};
-var List = /** @class */ (function () {
-    function List() {
-        this.data = [];
-    }
-    List.prototype.add = function (t) {
-        this.data.push(t);
-    };
-    List.prototype.remove = function (t) {
-        var index = this.data.indexOf(t);
-        if (index > -1) {
-            this.data.slice(index, 1);
-        }
-    };
-    List.prototype.asArray = function () {
-        return this.data;
-    };
-    return List;
-}());
-var numbers = new List();
-numbers.add(11);
-numbers.add(12);
-numbers.add(13);
-numbers.remove(12);
-var numArray = numbers.asArray();
-console.log(numArray);

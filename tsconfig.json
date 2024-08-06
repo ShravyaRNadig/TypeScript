@@ -1,0 +1,6 @@
+{
+    "compilerOptioms": {
+        "target": "ES5",
+        "experimentalDecorators": true
+    }
+}
